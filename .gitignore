@@ -1,0 +1,4 @@
+Bin/
+*.class
+.DS_Store
+Thumbs.db

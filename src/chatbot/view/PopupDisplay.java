@@ -11,11 +11,11 @@ public class PopupDisplay {
 		windowTitle = "Chatbot says ";
 	}
 	public void displayText (String sample) {
-		JOptionPane.showMessageDialog(null, sample);
+		JOptionPane.showMessageDialog(null, sample, windowTitle, JOptionPane.INFORMATION_MESSAGE, icon);
 	}
 	public String getResponse (String sample) {
 		String response = "";
-		response += JOptionPane.showInputDialog(null, sample);
+		response += JOptionPane.showInputDialog(null, sample, windowTitle, JOptionPane.PLAIN_MESSAGE, icon, null, "");
 		return response;
 	}
 }

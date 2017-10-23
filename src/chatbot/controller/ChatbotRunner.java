@@ -1,4 +1,4 @@
-package chatbot.cotroller;
+package chatbot.controller;
 
 public class ChatbotRunner {
 	public static void main (String [ ] args) {

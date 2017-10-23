@@ -25,7 +25,7 @@ public class Chatbot
 		this.cuteAnimalMemes = null;
 		this.currentTime = null;
 		this.questions = null;
-		this.username = null;
+		this.username = username;
 		this.content = null;
 		this.intro = null;
 		this.currentTime = null;
@@ -61,7 +61,11 @@ public class Chatbot
 	
 	public boolean lengthChecker(String input)
 	{
-		return false;
+		boolean validLength = false;
+		if (input != null && input.length() > 2) {
+			validLength = true;
+		}
+		return validLength;
 	}
 	
 	public boolean htmlTagChecker(String input)

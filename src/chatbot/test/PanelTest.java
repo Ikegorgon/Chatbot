@@ -13,8 +13,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import chat.controller.ChatbotController;
-import chat.view.ChatPanel;
+import chatbot.controller.ChatbotController;
+import chatbot.view.ChatPanel;
 
 public class PanelTest
 {

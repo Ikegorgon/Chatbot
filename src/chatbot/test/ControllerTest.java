@@ -6,10 +6,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import chat.controller.ChatbotController;
-import chat.model.Chatbot;
-import chat.view.PopupDisplay;
-import chat.view.ChatFrame;
+import chatbot.controller.ChatbotController;
+import chatbot.model.Chatbot;
+import chatbot.view.*;
 
 public class ControllerTest
 {

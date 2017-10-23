@@ -7,6 +7,6 @@ public class ChatbotController {
 	Chatbot chatbot = new Chatbot("");
 	PopupDisplay display = new PopupDisplay();
 	public void start() {
-		display.displayText("Test");
+		display.getResponse("Test");
 	}
 }

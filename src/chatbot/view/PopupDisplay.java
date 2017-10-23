@@ -7,7 +7,7 @@ public class PopupDisplay {
 	private ImageIcon icon;
 	private String windowTitle;
 	public PopupDisplay() {
-		icon = new ImageIcon(getClass().getResource("images/trump.png"));
+		icon = new ImageIcon(getClass().getResource("images/Trump.png"));
 		windowTitle = "Chatbot says ";
 	}
 	public void displayText (String sample) {

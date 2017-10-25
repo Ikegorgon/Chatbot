@@ -73,7 +73,7 @@ public class MovieTest
 	@Test
 	public void testGetLength()
 	{
-		assertTrue("Movies are at least ten minutes", testedMovie.getLength() > 10);
+		assertTrue("Movies are at least ten minutes", testedMovie.getLength() >= 10);
 	}
 
 	@Test

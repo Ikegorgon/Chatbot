@@ -21,19 +21,28 @@ public class Chatbot
 	public Chatbot(String username)
 	{
 		this.movieList = null;
-		this.shoppingList = null;
+		this.shoppingList = new ArrayList<String>();
 		this.cuteAnimalMemes = null;
 		this.currentTime = null;
 		this.questions = null;
 		this.username = username;
 		this.content = null;
 		this.intro = null;
-		this.currentTime = null;
 		this.topics = null;
 		this.verbs = null;
 		this.followUps = null;
+		
+		buildVerbs();
+		buildShoppingList();
 	}
-
+	
+	private void buildVerbs() {
+		verbs[0] = "like";
+		verbs[1] = "dislike";
+		verbs[2] = "am ambivalent about";
+		verbs[3] = "am thinking about";
+	}
+	
 	private void buildMovieList()
 	{
 		
@@ -41,7 +50,17 @@ public class Chatbot
 	
 	private void buildShoppingList()
 	{
-		
+		shoppingList.add("snacks");
+		shoppingList.add("veggies");
+		shoppingList.add("protein");
+		shoppingList.add("gross things");
+		shoppingList.add("Rubber Ducky");
+		shoppingList.add("Pie");
+		shoppingList.add("Apple Juice");
+		shoppingList.add("Oreos");
+		shoppingList.add("Poptarts");
+		shoppingList.add("Goldfish");
+		shoppingList.add("Chicken");
 	}
 	
 	private void buildCuteAnimals()
@@ -90,7 +109,29 @@ public class Chatbot
 	
 	public boolean shoppingListChecker(String shoppingItem)
 	{
-		return false;
+		boolean valid = false;
+		for (int i = 0; i < shoppingList.size(); i += 1) {
+			boolean slugbait = false;
+			boolean protein = false;
+			boolean veggies = false;
+			boolean snacks = false;
+			if (shoppingItem == "protien") {
+				protein = true;
+			}
+			if (shoppingItem == "veggies") {
+				veggies = true;
+			}
+			if (shoppingItem == "snacks") {
+				snacks = true;
+			}
+			if (shoppingItem == "slugbait") {
+				slugbait = true;
+			}
+			if (protein && veggies && snacks && slugbait == false) {
+				valid = true;
+			}
+		}
+		return valid;
 	}
 	
 	public boolean movieTitleChecker(String title)

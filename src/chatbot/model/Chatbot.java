@@ -1,4 +1,4 @@
-Addpackage chatbot.model;
+package chatbot.model;
 
 import java.util.List;
 import java.time.LocalTime;
@@ -33,8 +33,8 @@ public class Chatbot
 		this.followUps = new String[5];
 		
 		buildVerbs();
-		buildTopic();
-		buildFollowup();
+//		buildTopic();
+//		buildFollowup();
 		buildMovieList();
 		buildShoppingList();
 	}

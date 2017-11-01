@@ -1,4 +1,4 @@
-package chatbot.model;
+Addpackage chatbot.model;
 
 import java.util.List;
 import java.time.LocalTime;
@@ -33,6 +33,8 @@ public class Chatbot
 		this.followUps = new String[5];
 		
 		buildVerbs();
+		buildTopic();
+		buildFollowup();
 		buildMovieList();
 		buildShoppingList();
 	}
@@ -80,7 +82,21 @@ public class Chatbot
 	
 	public String processConversation(String input)
 	{
-		return null;
+		String chatbotResponse = "";
+		chatbotResponse += "You said: " + "\n" + input + "\n";
+		chatbotResponse += buildChatbotResponse();
+		return chatbotResponse;
+	}
+	
+	private String buildChatbotResponse() {
+		String response = "I ";
+		int rand = (int) (Math.random() * verbs.length);
+		response += verbs[rand];
+		rand = (int) (Math.random() * topics.length);
+		response += " " + topics[rand] + ".\n";
+		rand = (int) (Math.random() * questions.length);
+		response += questions[rand];
+		return response;
 	}
 	
 	public boolean lengthChecker(String input)
@@ -159,7 +175,7 @@ public class Chatbot
 		return false;
 	}
 	
-	public List<Movie> getMovieList()
+	public List<String> getMovieList()
 	{
 		return movieList;
 	}

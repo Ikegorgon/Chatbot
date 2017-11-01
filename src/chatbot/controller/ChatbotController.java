@@ -6,7 +6,18 @@ import chatbot.view.*;
 public class ChatbotController {
 	Chatbot chatbot = new Chatbot("");
 	PopupDisplay display = new PopupDisplay();
+//	private ChatFrame appFrame;
+
 	public void start() {
-		display.getResponse("Test");
+		String response = display.getResponse("What do you want to talk about?");
+		while (chatbot.lengthChecker(response) && !chatbot.quitChecker(response)); {
+			response = popupChat(response);
+			response = display.getResponse(response);
+		}
+	}
+	public String popupChat(String chat) {
+		String chatbotSays = "";
+		chatbotSays += chatbot.processConversation(chat);
+		return chatbotSays;
 	}
 }

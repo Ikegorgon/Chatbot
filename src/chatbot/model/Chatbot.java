@@ -28,13 +28,14 @@ public class Chatbot
 		this.username = username;
 		this.content = "";
 		this.intro = "";
-		this.topics = null;
+		this.topics = new String[5];
 		this.verbs = new String[5];
 		this.followUps = new String[5];
 		
 		buildVerbs();
-//		buildTopic();
-//		buildFollowup();
+		buildTopic();
+		buildFollowUp();
+		buildQuestions();
 		buildMovieList();
 		buildShoppingList();
 	}
@@ -44,6 +45,21 @@ public class Chatbot
 		verbs[1] = "dislike";
 		verbs[2] = "am ambivalent about";
 		verbs[3] = "am thinking about";
+		verbs[4] = "am annoyed with";
+	}
+	private void buildTopic() {
+		topics[0] = "Monkey";
+		topics[1] = "Candy";
+		topics[2] = "Pop Tarts";
+		topics[3] = "Ducks";
+		topics[4] = "Fried Chicken";
+	}
+	private void buildFollowUp() {
+		followUps[0] = "How about you?";
+		followUps[1] = "What do you think?";
+		followUps[2] = "What do you like?";
+		followUps[3] = "How would that go?";
+		followUps[4] = "Do you think the same?";
 	}
 	
 	private void buildMovieList()
@@ -77,7 +93,11 @@ public class Chatbot
 	
 	private void buildQuestions()
 	{
-		
+		questions[0] = "What is your name?";
+		questions[1] = "How is it going?";
+		questions[2] = "What's up?";
+		questions[3] = "Do you like chicken?";
+		questions[4] = "Have you been to Hawaii?";
 	}
 	
 	public String processConversation(String input)
@@ -115,7 +135,11 @@ public class Chatbot
 	
 	public boolean userNameChecker(String input)
 	{
-		return false;
+		boolean valid = false;
+		if (input != null && input.startsWith("@") && !input.substring(1, input.length()-1).contains("@")) {
+			valid = true;
+		}
+		return valid;
 	}
 	
 	public boolean contentChecker(String contentCheck)
@@ -131,24 +155,24 @@ public class Chatbot
 	public boolean shoppingListChecker(String shoppingItem)
 	{
 		boolean valid = false;
+		boolean slugbait = false;
+		boolean protein = false;
+		boolean veggies = false;
+		boolean snacks = false;
 		for (int i = 0; i < shoppingList.size(); i += 1) {
-			boolean slugbait = false;
-			boolean protein = false;
-			boolean veggies = false;
-			boolean snacks = false;
-			if (shoppingItem == "protien") {
+			if (shoppingItem.equalsIgnoreCase("protein")) {
 				protein = true;
 			}
-			if (shoppingItem == "veggies") {
+			if (shoppingItem.equalsIgnoreCase("veggies")) {
 				veggies = true;
 			}
-			if (shoppingItem == "snacks") {
+			if (shoppingItem.equalsIgnoreCase("snacks")) {
 				snacks = true;
 			}
-			if (shoppingItem == "slugbait") {
+			if (shoppingItem.equalsIgnoreCase("slug bait")) {
 				slugbait = true;
 			}
-			if (protein && veggies && snacks && slugbait == false) {
+			if (protein && veggies && snacks && !slugbait) {
 				valid = true;
 			}
 		}
@@ -167,7 +191,11 @@ public class Chatbot
 
 	public boolean quitChecker(String exitString)
 	{
-		return false;
+		boolean valid = false;
+		if (exitString != null && exitString.equalsIgnoreCase("Quit")) {
+			valid = true;
+		}
+		return valid;
 	}
 
 	public boolean keyboardMashChecker(String sample)

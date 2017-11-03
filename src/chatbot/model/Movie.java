@@ -14,7 +14,11 @@ public class Movie
 	
 	public Movie(String title)
 	{
-		this.title = "Movie";
+		if (title.length() > 3) {
+			this.title = title;
+		} else {
+			this.title = "Title";
+		}
 		this.genre = "Action";
 		this.ratingMPAA = "PG";
 		this.review = "This movie has no review";

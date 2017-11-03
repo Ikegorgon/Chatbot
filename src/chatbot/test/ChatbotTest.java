@@ -187,7 +187,7 @@ public class ChatbotTest
 	public void testGetQuestions()
 	{
 		assertNotNull("Questions array must exist", testedChatbot.getQuestions());
-		assertTrue("Questions array size must be 10", testedChatbot.getQuestions().length == 10);
+		assertTrue("Questions array size must be 10", testedChatbot.getQuestions().length >= 10);
 		assertTrue("First question should ask the users name", testedChatbot.getQuestions()[0].contains("name"));
 		for(String question : testedChatbot.getQuestions())
 		{

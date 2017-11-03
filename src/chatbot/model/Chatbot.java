@@ -3,10 +3,11 @@ package chatbot.model;
 import java.util.List;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import chatbot.model.Movie;
 
 public class Chatbot
 {
-	private List<String> movieList;
+	private List<Movie> movieList;
 	private List<String> shoppingList;
 	private List<String> cuteAnimalMemes;
 	private String [] verbs;
@@ -20,11 +21,11 @@ public class Chatbot
 	
 	public Chatbot(String username)
 	{
-		this.movieList = new ArrayList<String>();
+		this.movieList = new ArrayList<Movie>();
 		this.shoppingList = new ArrayList<String>();
 		this.cuteAnimalMemes = new ArrayList<String>();
 		this.currentTime = null;
-		this.questions = new String[5];
+		this.questions = new String[11];
 		this.username = username;
 		this.content = "";
 		this.intro = "";
@@ -35,9 +36,10 @@ public class Chatbot
 		buildVerbs();
 		buildTopic();
 		buildFollowUp();
-		buildQuestions();
 		buildMovieList();
 		buildShoppingList();
+		buildCuteAnimals();
+		buildQuestions();
 	}
 	
 	private void buildVerbs() {
@@ -64,11 +66,12 @@ public class Chatbot
 	
 	private void buildMovieList()
 	{
-		movieList.add("Spiderman: Homecoming");
-		movieList.add("Kingsman: Golden Circle");
-		movieList.add("Baby Driver");
-		movieList.add("Geostorm");
-		movieList.add("The Forgiener");
+		movieList.add(new Movie("Spiderman", "Action"));
+		movieList.add(new Movie("Kingsman: Golden Circle", "Action"));
+		movieList.add(new Movie("Baby Driver", "Action"));
+		movieList.add(new Movie("Geostorm", "Action"));
+		movieList.add(new Movie("The Forgiener", "Action"));
+		movieList.add(new Movie("Hidden Figures", "?"));
 	}
 	
 	private void buildShoppingList()
@@ -98,6 +101,12 @@ public class Chatbot
 		questions[2] = "What's up?";
 		questions[3] = "Do you like chicken?";
 		questions[4] = "Have you been to Hawaii?";
+		questions[5] = "Do you know who?";
+		questions[6] = "What's a fun game?";
+		questions[7] = "Have you been on a roller coaster?";
+		questions[8] = "Have you ever eaten alligator?";
+		questions[9] = "What's up with your family?";
+		questions[10] = "Do you think I am cool?";
 	}
 	
 	public String processConversation(String input)
@@ -144,7 +153,11 @@ public class Chatbot
 	
 	public boolean contentChecker(String contentCheck)
 	{
-		return false;
+		boolean valid = false;
+		if (!contentCheck.equals(null)) {
+			valid = true;
+		}
+		return valid;
 	}
 	
 	public boolean cuteAnimalMemeChecker(String input)
@@ -155,24 +168,32 @@ public class Chatbot
 	public boolean shoppingListChecker(String shoppingItem)
 	{
 		boolean valid = false;
-		boolean slugbait = false;
-		boolean protein = false;
-		boolean veggies = false;
-		boolean snacks = false;
-		for (int i = 0; i < shoppingList.size(); i += 1) {
-			if (shoppingItem.equalsIgnoreCase("protein")) {
-				protein = true;
-			}
-			if (shoppingItem.equalsIgnoreCase("veggies")) {
-				veggies = true;
-			}
-			if (shoppingItem.equalsIgnoreCase("snacks")) {
-				snacks = true;
-			}
-			if (shoppingItem.equalsIgnoreCase("slug bait")) {
-				slugbait = true;
-			}
-			if (protein && veggies && snacks && !slugbait) {
+//		boolean slugbait = false;
+//		boolean protein = false;
+//		boolean veggies = false;
+//		boolean snacks = false;
+////		for (int i = 0; i < shoppingList.size(); i += 1) {
+//			if (shoppingList.contains("protein")) {
+//				protein = true;
+//			}
+//			if (shoppingList.contains("veggies")) {
+//				veggies = true;
+//			}
+//			if (shoppingList.contains("snacks")) {
+//				snacks = true;
+//			}
+//			if (shoppingList.contains("slug bait")) {
+//				slugbait = true;
+//			}
+//			if (protein && veggies && snacks && !slugbait) {
+//				valid = true;
+//			}
+////			if(shoppingList.contains(shoppingItem)) {
+////				valid = true;
+////			}
+////		}
+		for (String item : shoppingList) {
+			if (shoppingItem.contains(item)) {
 				valid = true;
 			}
 		}
@@ -181,12 +202,22 @@ public class Chatbot
 	
 	public boolean movieTitleChecker(String title)
 	{
-		return false;
+		boolean valid = false;
+		for (Movie movie : movieList) {
+			if (movie.getTitle().equals(title) && !movie.getGenre().equals("")) {
+				valid = true;
+			}
+		}
+		return valid;
 	}
 	
 	public boolean movieGenreChecker(String genre)
 	{
-		return false;
+		boolean valid = false;
+		if (!genre.equals("")) {
+			valid = true;
+		}
+		return valid;
 	}
 
 	public boolean quitChecker(String exitString)
@@ -203,7 +234,7 @@ public class Chatbot
 		return false;
 	}
 	
-	public List<String> getMovieList()
+	public List<Movie> getMovieList()
 	{
 		return movieList;
 	}

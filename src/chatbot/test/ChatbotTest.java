@@ -89,11 +89,16 @@ public class ChatbotTest
 	@Test
 	public void testContentChecker()
 	{
-		assertTrue("Default content should be acceptable", testedChatbot.contentChecker(testedChatbot.getContent()));
-		String newContent = "adasffadga";
-		testedChatbot.setContent(newContent);
-		assertTrue("Changed content should also work", testedChatbot.contentChecker("adasffadga sfd sdf sdsdf "));
-		
+		assertNotNull("You must return a valid String.", testedChatbot.getContent());
+		assertTrue("Special topic must have more than six letters.", testedChatbot.getContent().length() > 5);
+		String content = "some words";
+		testedChatbot.setContent(content);
+		assertFalse("Check blank failed", testedChatbot.contentChecker(" "));
+		assertFalse("Check partial failed", testedChatbot.contentChecker("words"));
+		assertFalse("Check partial failed", testedChatbot.contentChecker("some"));
+		assertTrue("Check match failed", testedChatbot.contentChecker(content));
+		assertTrue("Check match plus failed", testedChatbot.contentChecker("content " + content));
+		assertTrue("Opposite check match failed", testedChatbot.contentChecker(content + " other content"));
 	}
 
 	@Test
@@ -206,16 +211,11 @@ public class ChatbotTest
 	@Test
 	public void testGetContent()
 	{
-		assertNotNull("You must return a valid String.", testedChatbot.getContent());
-		assertTrue("Special topic must have more than six letters.", testedChatbot.getContent().length() > 5);
-		String content = "some words";
-		testedChatbot.setContent(content);
-		assertFalse("Check blank failed", testedChatbot.contentChecker(" "));
-		assertFalse("Check partial failed", testedChatbot.contentChecker("words"));
-		assertFalse("Check partial failed", testedChatbot.contentChecker("some"));
-		assertTrue("Check match failed", testedChatbot.contentChecker(content));
-		assertTrue("Check match plus failed", testedChatbot.contentChecker("content " + content));
-		assertTrue("Opposite check match failed", testedChatbot.contentChecker(content + " other content"));
+		assertTrue("Default content should be acceptable", testedChatbot.contentChecker(testedChatbot.getContent()));
+		String newContent = "adasffadga";
+		testedChatbot.setContent(newContent);
+		assertTrue("Changed content should also work", testedChatbot.contentChecker("adasffadga sfd sdf sdsdf "));
+		
 	}
 	
 	@Test

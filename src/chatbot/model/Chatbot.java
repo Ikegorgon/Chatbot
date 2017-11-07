@@ -24,11 +24,11 @@ public class Chatbot
 		this.movieList = new ArrayList<Movie>();
 		this.shoppingList = new ArrayList<String>();
 		this.cuteAnimalMemes = new ArrayList<String>();
-		this.currentTime = null;
+		this.currentTime = LocalTime.now();
 		this.questions = new String[11];
 		this.username = username;
-		this.content = "";
-		this.intro = "";
+		this.content = "Content";
+		this.intro = "Intro";
 		this.topics = new String[5];
 		this.verbs = new String[5];
 		this.followUps = new String[5];
@@ -66,12 +66,12 @@ public class Chatbot
 	
 	private void buildMovieList()
 	{
-		movieList.add(new Movie("Spiderman", "Action"));
-		movieList.add(new Movie("Kingsman: Golden Circle", "Action"));
-		movieList.add(new Movie("Baby Driver", "Action"));
-		movieList.add(new Movie("Geostorm", "Action"));
-		movieList.add(new Movie("The Forgiener", "Action"));
-		movieList.add(new Movie("Hidden Figures", "?"));
+		movieList.add(new Movie("Spiderman"));
+		movieList.add(new Movie("Kingsman: Golden Circle"));
+		movieList.add(new Movie("Baby Driver"));
+		movieList.add(new Movie("Geostorm"));
+		movieList.add(new Movie("The Forgiener"));
+		movieList.add(new Movie("Hidden Figures"));
 	}
 	
 	private void buildShoppingList()
@@ -91,7 +91,17 @@ public class Chatbot
 	
 	private void buildCuteAnimals()
 	{
-		
+		cuteAnimalMemes.add("Panda Bear");
+		cuteAnimalMemes.add("Baby Panda Bear");
+		cuteAnimalMemes.add("Huskey");
+		cuteAnimalMemes.add("Elephant");
+		cuteAnimalMemes.add("Chameleon");
+		cuteAnimalMemes.add("Duckling");
+		cuteAnimalMemes.add("Hedgehog");
+		cuteAnimalMemes.add("Otter");
+		cuteAnimalMemes.add("Floofer");
+		cuteAnimalMemes.add("Kittie");
+		cuteAnimalMemes.add("Pupper");
 	}
 	
 	private void buildQuestions()
@@ -139,7 +149,11 @@ public class Chatbot
 	
 	public boolean htmlTagChecker(String input)
 	{
-		return false;
+		boolean valid = false;
+//		if () {
+//			valid = true;
+//		}
+		return valid;
 	}
 	
 	public boolean userNameChecker(String input)
@@ -160,9 +174,21 @@ public class Chatbot
 		return valid;
 	}
 	
+	public String toString () {
+		//??????????????????????
+		String description = "";
+		return description;
+	}
+	
 	public boolean cuteAnimalMemeChecker(String input)
 	{
-		return false;
+		boolean valid = false;
+		for (String meme : cuteAnimalMemes) {
+			if (input.equalsIgnoreCase(meme)) {
+				valid = true;
+			}
+		}
+		return valid;
 	}
 	
 	public boolean shoppingListChecker(String shoppingItem)
@@ -231,7 +257,14 @@ public class Chatbot
 
 	public boolean keyboardMashChecker(String sample)
 	{
-		return false;
+		boolean valid = false;
+		String[] Mash = new String[] {"sdf", "dfg", "cvb", "kjh", ",./"};
+		for (String mash : Mash) {
+			if (mash.equalsIgnoreCase(sample)) {
+				valid = true;
+			}
+		}
+		return valid;
 	}
 	
 	public List<Movie> getMovieList()

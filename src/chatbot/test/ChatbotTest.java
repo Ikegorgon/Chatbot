@@ -101,6 +101,7 @@ public class ChatbotTest
 		assertTrue("Opposite check match failed", testedChatbot.contentChecker(content + " other content"));
 	}
 
+
 	@Test
 	public void testCuteAnimalMemeChecker()
 	{
@@ -215,7 +216,6 @@ public class ChatbotTest
 		String newContent = "adasffadga";
 		testedChatbot.setContent(newContent);
 		assertTrue("Changed content should also work", testedChatbot.contentChecker("adasffadga sfd sdf sdsdf "));
-		
 	}
 	
 	@Test

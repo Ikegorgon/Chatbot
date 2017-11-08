@@ -86,6 +86,15 @@ public class Chatbot
 		shoppingList.add("Poptarts");
 		shoppingList.add("Goldfish");
 		shoppingList.add("Chicken");
+		shoppingList.add("eggs");
+		shoppingList.add("protein");
+		shoppingList.add("hot peppers");
+		shoppingList.add("onions");
+		shoppingList.add("snacks");
+		shoppingList.add("bagel");
+		shoppingList.add("crunchy peanut butter");
+		shoppingList.add("hot sauce");
+		shoppingList.add("juice");
 	}
 	
 	private void buildCuteAnimals()

@@ -32,10 +32,9 @@ public class Chatbot
 		this.topics = new String[5];
 		this.verbs = new String[5];
 		this.followUps = new String[5];
-		
 		buildVerbs();
 		buildTopic();
-		buildFollowUp();
+		buildFollowUps();
 		buildMovieList();
 		buildShoppingList();
 		buildCuteAnimals();
@@ -56,7 +55,7 @@ public class Chatbot
 		topics[3] = "Ducks";
 		topics[4] = "Fried Chicken";
 	}
-	private void buildFollowUp() {
+	private void buildFollowUps() {
 		followUps[0] = "How about you?";
 		followUps[1] = "What do you think?";
 		followUps[2] = "What do you like?";
@@ -133,15 +132,20 @@ public class Chatbot
 		response += verbs[rand];
 		rand = (int) (Math.random() * topics.length);
 		response += " " + topics[rand] + ".\n";
+		rand = (int) (Math.random() * 2);
 		rand = (int) (Math.random() * questions.length);
 		response += questions[rand];
+		if (rand % 2 == 0) {
+			rand = (int) (Math.random() * movieList.size());
+			response += "\n" + movieList.get(rand).getTitle() + " is a good movie.";
+		}
 		return response;
 	}
 	
 	public boolean lengthChecker(String input)
 	{
 		boolean validLength = false;
-		if (input != null && input.length() > 2) {
+		if (input != null && input.length() > 0) {
 			validLength = true;
 		}
 		return validLength;
@@ -150,9 +154,27 @@ public class Chatbot
 	public boolean htmlTagChecker(String input)
 	{
 		boolean valid = false;
-//		if () {
-//			valid = true;
-//		}
+		int len = input.length();
+		int one = input.indexOf("<") + 1;
+		int two = input.indexOf(">");
+		int three = input.indexOf("<" + "/") + 2;
+		String temp = input;
+		temp = temp.replaceFirst(">", " ");
+		int four = temp.indexOf(">");
+		if (len > 3 && three > one && four > two && input.toLowerCase().substring(one, two)
+				.contains(input.toLowerCase().substring(three, four))) {
+			valid = true;
+		}
+		if (input.substring(one, two).equalsIgnoreCase("p") 
+				|| input.substring(one, two).equalsIgnoreCase("br")) {
+			valid = true;
+		}
+		String a = input.toLowerCase().substring(one, two);
+		if (a.contains("a href")) {
+			if (!a.contains("a href=") && !a.contains("a href =")) {
+				valid = false;
+			}
+		}
 		return valid;
 	}
 	
@@ -168,7 +190,7 @@ public class Chatbot
 	public boolean contentChecker(String contentCheck)
 	{
 		boolean valid = false;
-		if (!contentCheck.equals(null)) {
+		if (contentCheck.contains(content)) {
 			valid = true;
 		}
 		return valid;

@@ -15,6 +15,10 @@ public class ChatbotController {
 			response = display.getResponse(response);
 		}
 	}
+	public String interactWithChatbot(String input) {
+		String response = "Hello";
+		return response;
+	}
 	public String popupChat(String chat) {
 		String chatbotSays = "";
 		chatbotSays += chatbot.processConversation(chat);
@@ -26,4 +30,7 @@ public class ChatbotController {
 	public PopupDisplay getDisplay() {
 		return display;
 	}
+//	public ChatFrame getChatFrame() {
+//		return appFrame;
+//	}
 }

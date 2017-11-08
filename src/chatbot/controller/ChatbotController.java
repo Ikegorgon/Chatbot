@@ -10,7 +10,7 @@ public class ChatbotController {
 
 	public void start() {
 		String response = display.getResponse("What do you want to talk about?");
-		while (chatbot.lengthChecker(response) && !chatbot.quitChecker(response)); {
+		while (chatbot.lengthChecker(response) && !chatbot.quitChecker(response)) {
 			response = popupChat(response);
 			response = display.getResponse(response);
 		}
@@ -19,5 +19,11 @@ public class ChatbotController {
 		String chatbotSays = "";
 		chatbotSays += chatbot.processConversation(chat);
 		return chatbotSays;
+	}
+	public Chatbot getChatbot() {
+		return chatbot;
+	}
+	public PopupDisplay getDisplay() {
+		return display;
 	}
 }

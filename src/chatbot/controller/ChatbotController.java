@@ -16,7 +16,7 @@ public class ChatbotController {
 		}
 	}
 	public String interactWithChatbot(String input) {
-		String response = "Hello";
+		String response = "Hello there, I am chatbot. Will you be my friend?";
 		return response;
 	}
 	public String popupChat(String chat) {

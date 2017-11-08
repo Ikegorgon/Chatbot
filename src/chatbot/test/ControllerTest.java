@@ -44,7 +44,7 @@ public class ControllerTest
 	{
 		assertNotNull("Interact method should not return null", testedController.interactWithChatbot(""));
 		assertNotNull("Interact method should not return null still", testedController.interactWithChatbot(null));
-		assertTrue("Interact method should always return a String longer than 5", testedController.interactWithChatbot("").length() > 5);
+		assertTrue("Interact method should always return a String longer than 0", testedController.interactWithChatbot("").length() > 0);
 		
 	}
 
@@ -62,6 +62,7 @@ public class ControllerTest
 		assertTrue("Popup display type should be used.", testedController.getDisplay() instanceof PopupDisplay);
 	}
 	
+	@Test
 	public void testGetChatFrame()
 	{
 		assertNotNull("ChatFrame must be initialized.", testedController.getChatFrame());

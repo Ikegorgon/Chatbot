@@ -35,7 +35,7 @@ public class PanelTest
 	@Test
 	public void testSetupListeners()
 	{
-		assertTrue("Minimum components not met", testedPanel.getComponents().length > 5);
+		assertTrue("Minimum components not met", testedPanel.getComponents().length >= 3);
 		for(Component currentGUIComponent : testedPanel.getComponents())
 		{
 			if(currentGUIComponent instanceof JButton)
@@ -50,7 +50,7 @@ public class PanelTest
 	@Test
 	public void testSetupPanel()
 	{
-		assertTrue("Minimum number of JComponents not met", testedPanel.getComponents().length > 5);
+		assertTrue("Minimum number of JComponents not met", testedPanel.getComponents().length >= 5);
 		assertTrue("Layout manager should be a SpringLayout", testedPanel.getLayout() instanceof SpringLayout);
 		for(Component currentGUIComponent : testedPanel.getComponents())
 		{

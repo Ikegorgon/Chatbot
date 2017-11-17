@@ -7,6 +7,7 @@ import java.awt.event.*;
 import java.awt.Font;
 
 public class ChatPanel extends JPanel {
+	//Panel to display Chatbot in fancy way :)
 	private ChatbotController app;
 	private JButton chatButton;
 	private JButton randButton;

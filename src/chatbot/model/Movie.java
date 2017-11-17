@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Movie
 {
+	//Movie Object
 	private String title;
 	private String genre;
 	private String ratingMPAA;

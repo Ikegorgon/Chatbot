@@ -4,6 +4,7 @@ import chatbot.model.*;
 import chatbot.view.*;
 
 public class ChatbotController {
+	//Controller
 	Chatbot chatbot = new Chatbot("");
 	PopupDisplay display = new PopupDisplay();
 	ChatFrame appFrame = new ChatFrame(this);

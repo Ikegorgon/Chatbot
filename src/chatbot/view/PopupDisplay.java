@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 
 public class PopupDisplay {
+	//Temporary display for Chatbot
 	private ImageIcon icon;
 	private String windowTitle;
 	public PopupDisplay() {

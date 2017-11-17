@@ -4,6 +4,7 @@ import chatbot.controller.*;
 import javax.swing.*;
 
 public class ChatFrame extends JFrame {
+	//Basic Frame to hold Panel
 	private ChatbotController app;
 	private ChatPanel appPanel;
 	public ChatFrame(ChatbotController app) {

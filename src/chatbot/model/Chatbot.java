@@ -7,6 +7,7 @@ import chatbot.model.Movie;
 
 public class Chatbot
 {
+	//Chatbot Object
 	private List<Movie> movieList;
 	private List<String> shoppingList;
 	private List<String> cuteAnimalMemes;

@@ -93,7 +93,10 @@ public class ChatPanel extends JPanel {
 	private void setupListeners() {
 		chatButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				
+				String userText = inputField.getText();
+				String displayText = app.interactWithChatbot(userText);
+				chatArea.append(displayText);
+				inputField.setText("");
 			}
 		});
 		randButton.addActionListener(new ActionListener() {

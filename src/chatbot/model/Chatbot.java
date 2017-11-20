@@ -144,10 +144,10 @@ public class Chatbot
 		response += " " + topics[rand] + ".\n";
 		rand = (int) (Math.random() * 2);
 		rand = (int) (Math.random() * questions.length);
-		response += questions[rand];
+		response += questions[rand] + "\n";
 		if (rand % 2 == 0) {
 			rand = (int) (Math.random() * movieList.size());
-			response += "\n" + movieList.get(rand).getTitle() + " is a good movie.";
+			response += movieList.get(rand).getTitle() + " is a good movie. \n";
 		}
 		return response;
 	}

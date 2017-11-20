@@ -1,19 +1,22 @@
 package chatbot.view;
 
 import chatbot.controller.*;
+import chatbot.model.*;
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.*;
 import java.awt.Font;
 
-public class ChatPanel extends JPanel {
+public class ChatPanel extends JPanel{
 	//Panel to display Chatbot in fancy way :)
 	private ChatbotController app;
+	private Chatbot chatbot;
+	private ChatFrame frame;
 	private JButton chatButton;
 	private JButton randButton;
 	private JButton numButton;
 	private JTextField inputField;
-	private JTextArea chatArea;
+	private static JTextArea chatArea;
 	private SpringLayout appLayout;
 	private JTextArea textArea;
 	
@@ -43,6 +46,7 @@ public class ChatPanel extends JPanel {
 		this.add(textArea);
 	}
 	private void setupLayout() {
+		chatArea.setText("Hello, I am Chabot. What would you like to talk about? \n");
 		chatArea.setToolTipText("Chatbot Response Shows Up Here");
 		chatArea.setWrapStyleWord(true);
 		chatArea.setLineWrap(true);
@@ -109,5 +113,8 @@ public class ChatPanel extends JPanel {
 				
 			}
 		});
+	}
+	public static JTextArea getChatArea() {
+		return chatArea;
 	}
 }

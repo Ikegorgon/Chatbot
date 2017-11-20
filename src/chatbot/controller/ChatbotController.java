@@ -1,5 +1,7 @@
 package chatbot.controller;
 
+import javax.swing.JTextArea;
+
 import chatbot.model.*;
 import chatbot.view.*;
 
@@ -8,9 +10,11 @@ public class ChatbotController {
 	Chatbot chatbot = new Chatbot("");
 	PopupDisplay display = new PopupDisplay();
 	ChatFrame appFrame = new ChatFrame(this);
+
 //	private ChatFrame appFrame;
 
 	public void start() {
+		close();
 //		String response = display.getResponse("What do you want to talk about?");
 //		while (chatbot.lengthChecker(response) && !chatbot.quitChecker(response)) {
 //			response = popupChat(response);
@@ -18,8 +22,26 @@ public class ChatbotController {
 //		}
 	}
 	public String interactWithChatbot(String input) {
-		String response = "Hello there, I am chatbot. Will you be my friend?";
+		String response = "";
+		if (chatbot.quitChecker(input)) {
+			response += "\n GoodBye! :(";
+		} else {
+			response += chatbot.processConversation(input);
+		}
 		return response;
+	}
+	public void close() {
+		JTextArea chatArea = ChatPanel.getChatArea();
+		while (true) {
+			if(chatArea.getText().endsWith("GoodBye! :(")) {
+				try {
+					Thread.sleep(1000);
+				} catch(InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
+				System.exit(0);
+			}
+		}
 	}
 	public String popupChat(String chat) {
 		String chatbotSays = "";

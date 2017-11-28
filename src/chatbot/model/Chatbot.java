@@ -164,6 +164,7 @@ public class Chatbot
 	public boolean htmlTagChecker(String input)
 	{
 		boolean valid = false;
+		boolean length = true;
 		int len = input.length();
 		int one = input.indexOf("<") + 1;
 		int two = input.indexOf(">");
@@ -171,15 +172,22 @@ public class Chatbot
 		String temp = input;
 		temp = temp.replaceFirst(">", " ");
 		int four = temp.indexOf(">");
-		if (len > 3 && three > one && four > two && input.toLowerCase().substring(one, two)
+		if (len > 3) {
+			length = false;
+		}
+		if (length && three > one && four > two && input.toLowerCase().substring(one, two)
 				.contains(input.toLowerCase().substring(three, four))) {
 			valid = true;
 		}
-		if (input.substring(one, two).equalsIgnoreCase("p") 
-				|| input.substring(one, two).equalsIgnoreCase("br")) {
+		if (length && input.substring(one, two).equalsIgnoreCase("p") 
+				|| length && input.substring(one, two).equalsIgnoreCase("br")) {
 			valid = true;
 		}
-		String a = input.toLowerCase().substring(one, two);
+		
+		String a = "";
+		if (length) {
+			a = input.toLowerCase().substring(one, two);
+		}
 		if (a.contains("a href")) {
 			if (!a.contains("a href=") && !a.contains("a href =")) {
 				valid = false;

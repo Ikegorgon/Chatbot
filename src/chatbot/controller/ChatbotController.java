@@ -33,7 +33,7 @@ public class ChatbotController {
 	public void close() {
 		JTextArea chatArea = ChatPanel.getChatArea();
 		while (true) {
-			if(chatArea.getText().endsWith("GoodBye! :(")) {
+			if (chatArea.getText().endsWith("GoodBye! :(")) {
 				try {
 					Thread.sleep(1000);
 				} catch(InterruptedException ex) {
@@ -48,6 +48,34 @@ public class ChatbotController {
 		chatbotSays += chatbot.processConversation(chat);
 		return chatbotSays;
 	}
+	public String useCheckers(String text) {
+		String response = "";
+		if (chatbot.contentChecker(text)) {
+			response += "This text matches the special content.\n";
+		}
+		if (chatbot.cuteAnimalMemeChecker(text)) {
+			response += "This text has a cute animal.\n";
+		}
+		if (chatbot.htmlTagChecker(text)) {
+			response += "This text has an HTML Tag.\n";
+		}
+		if (chatbot.keyboardMashChecker(text)) {
+			response += "This text has keyboard mashing.\n";
+		}
+		if (chatbot.movieGenreChecker(text)) {
+			response += "This text has a movie genre.\n";
+		}
+		if (chatbot.movieTitleChecker(text)) {
+			response += "This text has a movie title.\n";
+		}
+		if (chatbot.shoppingListChecker(text)) {
+			response += "This text has a shopping item.\n";
+		}
+		if (chatbot.userNameChecker(text)) {
+			response += "This text has a username.\n";
+		}
+		return response;
+	}
 	public Chatbot getChatbot() {
 		return chatbot;
 	}
@@ -57,7 +85,4 @@ public class ChatbotController {
 	public ChatFrame getChatFrame() {
 		return appFrame;
 	}
-//	public ChatFrame getChatFrame() {
-//		return appFrame;
-//	}
 }

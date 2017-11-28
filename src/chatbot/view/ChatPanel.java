@@ -3,6 +3,7 @@ package chatbot.view;
 import chatbot.controller.*;
 import chatbot.model.*;
 import javax.swing.*;
+import java.util.*;
 import java.awt.Color;
 import java.awt.event.*;
 import java.awt.Font;
@@ -13,7 +14,7 @@ public class ChatPanel extends JPanel{
 	private Chatbot chatbot;
 	private ChatFrame frame;
 	private JButton chatButton;
-	private JButton randButton;
+	private JButton useButton;
 	private JButton numButton;
 	private JTextField inputField;
 	private static JTextArea chatArea;
@@ -26,10 +27,11 @@ public class ChatPanel extends JPanel{
 		chatArea = new JTextArea(10, 25);
 		chatButton = new JButton("Chat");
 		inputField = new JTextField(20);
-		randButton = new JButton("Random");
+		useButton = new JButton("Check");
 		numButton = new JButton("Number");
 		textArea = new JTextArea(0, 0);
 		appLayout = new SpringLayout();
+		frame = new ChatFrame();
 		
 		setupPanel();
 		setupLayout();
@@ -41,7 +43,7 @@ public class ChatPanel extends JPanel{
 		this.add(chatArea);
 		this.add(inputField);
 		this.add(chatButton);
-		this.add(randButton);
+		this.add(useButton);
 		this.add(numButton);
 		this.add(textArea);
 	}
@@ -59,23 +61,24 @@ public class ChatPanel extends JPanel{
 		appLayout.putConstraint(SpringLayout.SOUTH, chatArea, -20, SpringLayout.NORTH, inputField);
 		appLayout.putConstraint(SpringLayout.WEST, chatArea, 60, SpringLayout.WEST, this);
 		
-		chatButton.setToolTipText("Press This Button To Send Your Input To Chatbot");
-		chatButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
+
+		inputField.setToolTipText("Your Input Goes Here");
 		appLayout.putConstraint(SpringLayout.NORTH, inputField, 200, SpringLayout.NORTH, chatArea);
 		appLayout.putConstraint(SpringLayout.EAST, inputField, -100, SpringLayout.EAST, chatArea);
 		appLayout.putConstraint(SpringLayout.WEST, inputField, 0, SpringLayout.WEST, chatArea);
 		
-		inputField.setToolTipText("Your Input Goes Here");
+		chatButton.setToolTipText("Press This Button To Send Your Input To Chatbot");
+		chatButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		appLayout.putConstraint(SpringLayout.NORTH, chatButton, 0, SpringLayout.NORTH, inputField);
 		appLayout.putConstraint(SpringLayout.EAST, chatButton, 0, SpringLayout.EAST, chatArea);
 		appLayout.putConstraint(SpringLayout.SOUTH, chatButton, 0, SpringLayout.SOUTH, inputField);
 		appLayout.putConstraint(SpringLayout.WEST, chatButton, -100, SpringLayout.EAST, chatArea);
 		
-		randButton.setToolTipText("Press This Button To Say Something Really Random");
-		randButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		appLayout.putConstraint(SpringLayout.NORTH, randButton, 5, SpringLayout.SOUTH, inputField);
-		appLayout.putConstraint(SpringLayout.EAST, randButton, 190, SpringLayout.WEST, chatArea);
-		appLayout.putConstraint(SpringLayout.WEST, randButton, 0, SpringLayout.WEST, chatArea);
+		useButton.setToolTipText("Press This Button To Check For Special Cases");
+		useButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		appLayout.putConstraint(SpringLayout.NORTH, useButton, 5, SpringLayout.SOUTH, inputField);
+		appLayout.putConstraint(SpringLayout.EAST, useButton, 190, SpringLayout.WEST, chatArea);
+		appLayout.putConstraint(SpringLayout.WEST, useButton, 0, SpringLayout.WEST, chatArea);
 		
 		numButton.setToolTipText("Press This Button  To Display A Number");
 		numButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
@@ -103,14 +106,20 @@ public class ChatPanel extends JPanel{
 				inputField.setText("");
 			}
 		});
-		randButton.addActionListener(new ActionListener() {
+		useButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				
+				String userText = inputField.getText();
+				String displayText = app.useCheckers(userText);
+				chatArea.append(displayText);
+				inputField.setText("");
 			}
 		});
 		numButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				
+				Random rand = new Random();
+				int n = rand.nextInt(999999999);
+				String num = n + "\n";
+				chatArea.append(num);
 			}
 		});
 	}

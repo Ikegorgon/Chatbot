@@ -172,7 +172,7 @@ public class Chatbot
 		String temp = input;
 		temp = temp.replaceFirst(">", " ");
 		int four = temp.indexOf(">");
-		if (len > 3) {
+		if (len < 3) {
 			length = false;
 		}
 		if (length && three > one && four > two && input.toLowerCase().substring(one, two)

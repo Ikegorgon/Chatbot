@@ -131,8 +131,16 @@ public class Chatbot
 	public String processConversation(String input)
 	{
 		String chatbotResponse = "";
-		chatbotResponse += "You said: " + "\n" + input + "\n";
-		chatbotResponse += buildChatbotResponse();
+		String time;
+		currentTime = LocalTime.now();
+		if (currentTime.getMinute() < 10) {
+			time = currentTime.getHour() + ":0" + currentTime.getMinute() + " ";
+		} else {
+			time = currentTime.getHour() + ":" + currentTime.getMinute() + " ";
+		}
+		chatbotResponse += time;
+		chatbotResponse += "You said: " + input + "\n";
+		chatbotResponse += buildChatbotResponse() + "\n";
 		return chatbotResponse;
 	}
 	
@@ -149,6 +157,10 @@ public class Chatbot
 			rand = (int) (Math.random() * movieList.size());
 			response += movieList.get(rand).getTitle() + " is a good movie. \n";
 		}
+		//Build Better Response
+		
+		
+		
 		return response;
 	}
 	

@@ -56,9 +56,6 @@ public class ChatbotController {
 		if (chatbot.cuteAnimalMemeChecker(text)) {
 			response += "This text has a cute animal.\n";
 		}
-		if (chatbot.htmlTagChecker(text)) {
-			response += "This text has an HTML Tag.\n";
-		}
 		if (chatbot.keyboardMashChecker(text)) {
 			response += "This text has keyboard mashing.\n";
 		}

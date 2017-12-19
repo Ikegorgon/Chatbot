@@ -4,6 +4,7 @@ import chatbot.controller.*;
 import javax.swing.*;
 
 public class ChatFrame extends JFrame {
+	private static final long serialVersionUID = 1L;
 	//Basic Frame to hold Panel
 	private ChatbotController app;
 	private ChatPanel appPanel;

@@ -9,7 +9,7 @@ import java.awt.event.*;
 import java.awt.Font;
 
 public class ChatPanel extends JPanel{
-	//Panel to display Chatbot in fancy way :)
+	private static final long serialVersionUID = 1L;
 	private ChatbotController app;
 	private Chatbot chatbot;
 	private ChatFrame frame;
@@ -135,6 +135,8 @@ public class ChatPanel extends JPanel{
 			}
 		});
 		inputField.addActionListener(new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+
 			public void actionPerformed(ActionEvent e) {
 				String userText = inputField.getText();
 				String displayText = app.interactWithChatbot(userText);
@@ -146,5 +148,9 @@ public class ChatPanel extends JPanel{
 	}
 	public static JTextArea getChatArea() {
 		return chatArea;
+	}
+	public void errorClear() {
+		frame.getClass();
+		chatbot.getClass();
 	}
 }

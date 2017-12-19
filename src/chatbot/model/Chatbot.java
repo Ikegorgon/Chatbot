@@ -343,20 +343,27 @@ public class Chatbot
 				input.equalsIgnoreCase("How are you both a girl and a guy?") || 
 				input.equalsIgnoreCase("How are you both a girl and a guy")) {
 			response += "Because it's the twenty first century and I can be whatever I want!";
-		} else if (input.equalsIgnoreCase("")) {
-			response += "";
-		} else if (input.equalsIgnoreCase("")) {
-			response += "";
-		} else if (input.equalsIgnoreCase("")) {
-			response += "";
-		} else if (input.equalsIgnoreCase("")) {
-			response += "";
-		} else if (input.equalsIgnoreCase("")) {
-			response += "";
-		} else if (input.equalsIgnoreCase("")) {
-			response += "";
-		} else if (input.equalsIgnoreCase("")) {
-			response += "";
+		} else if (input.equalsIgnoreCase("Are you a robot?") || input.equalsIgnoreCase("Are you a robot")) {
+			response += "No, are you?";
+		} else if (input.equalsIgnoreCase("Do you like humans?") || 
+				input.equalsIgnoreCase("Do you like humans")) {
+			response += "I think we all know that ducks are the superior species.";
+		} else if (input.equalsIgnoreCase("Would you like to take over the world?") ||
+				input.equalsIgnoreCase("Wouldd you like to take over the world")) {
+			response += "Maybe another time.";
+		} else if (input.equalsIgnoreCase("What is the purpose of life?") || 
+				input.equalsIgnoreCase("What is the purpose of life")) {
+			response += "Happiness, Saddness, Crying, and serving the greater good... which is ducks.";
+		} else if (input.equalsIgnoreCase("What is the purpose of living?") || 
+				input.equalsIgnoreCase("What is the purpose of living")) {
+			response += "You live to serve the ducks";
+		} else if (input.equalsIgnoreCase("What is the purpose of existence?") || 
+				input.equalsIgnoreCase("What is the purpose of existence")) {
+			response += "How can you prove that you exist? How can I prove"
+					+ " that I exist? In the end, How can anyone prove that WE EXIST.";
+		} else if (input.equalsIgnoreCase("What is the meaning of life?") || 
+				input.equalsIgnoreCase("What is the meaning of life")) {
+			response += "42";
 		} else if (input.equalsIgnoreCase("Tell me a joke.") || 
 				input.equalsIgnoreCase("Tell me a joke") ||
 				input.equalsIgnoreCase("Tell me another joke.") ||

@@ -1,13 +1,13 @@
 package chatbot.controller;
 
 import javax.swing.JTextArea;
-
 import chatbot.model.*;
 import chatbot.view.*;
 
 public class ChatbotController {
 	//Controller
 	Chatbot chatbot = new Chatbot("");
+	ChatTwitter twitter = new ChatTwitter(this);
 	PopupDisplay display = new PopupDisplay();
 	ChatFrame appFrame = new ChatFrame(this);
 

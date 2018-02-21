@@ -173,6 +173,26 @@ public class ChatPanel extends JPanel{
 				chatArea.setCaretPosition(chatArea.getDocument().getLength());
 			}
 		});
+		saveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				
+			}
+		});
+		loadButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				
+			}
+		});
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				
+			}
+		});
+		tweetButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				
+			}
+		});
 	}
 	public static JTextArea getChatArea() {
 		return chatArea;

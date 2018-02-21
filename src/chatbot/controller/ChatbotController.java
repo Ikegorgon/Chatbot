@@ -76,6 +76,9 @@ public class ChatbotController {
 	public void handleError(Exception error) {
 		display.displayText(error.getMessage());
 	}
+	public void tweet(String text) {
+		twitter.sendTweet(text);
+	}
 	public Chatbot getChatbot() {
 		return chatbot;
 	}

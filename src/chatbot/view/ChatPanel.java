@@ -21,6 +21,10 @@ public class ChatPanel extends JPanel{
 	private SpringLayout appLayout;
 	private JTextArea textArea;
 	private JScrollPane chatScrollPane;
+	private JButton saveButton;
+	private JButton loadButton;
+	private JButton searchButton;
+	private JButton tweetButton;
 	public ChatPanel(ChatbotController app) {
 		super();
 		this.app = app;
@@ -31,8 +35,34 @@ public class ChatPanel extends JPanel{
 		numButton = new JButton("Number");
 		textArea = new JTextArea(0, 0);
 		appLayout = new SpringLayout();
+		appLayout.putConstraint(SpringLayout.WEST, useButton, -5, SpringLayout.WEST, inputField);
+		appLayout.putConstraint(SpringLayout.EAST, numButton, 0, SpringLayout.EAST, chatButton);
+		appLayout.putConstraint(SpringLayout.EAST, chatButton, -5, SpringLayout.EAST, textArea);
+		appLayout.putConstraint(SpringLayout.WEST, inputField, 5, SpringLayout.WEST, textArea);
+		appLayout.putConstraint(SpringLayout.NORTH, useButton, 5, SpringLayout.SOUTH, inputField);
+		appLayout.putConstraint(SpringLayout.NORTH, inputField, 260, SpringLayout.NORTH, this);
 		frame = new ChatFrame();
 		chatScrollPane = new JScrollPane();
+		saveButton = new JButton("Save", new ImageIcon(getClass().getResource("/chatbot/view/images/save.png")));
+		appLayout.putConstraint(SpringLayout.WEST, saveButton, 5, SpringLayout.WEST, useButton);
+		appLayout.putConstraint(SpringLayout.EAST, saveButton, 98, SpringLayout.WEST, useButton);
+		saveButton.setFont(new Font("Times New Roman", Font.BOLD, 13));
+		appLayout.putConstraint(SpringLayout.NORTH, saveButton, 5, SpringLayout.SOUTH, useButton);
+		loadButton = new JButton("Load", new ImageIcon(getClass().getResource("/chatbot/view/images/load.png")));
+		appLayout.putConstraint(SpringLayout.EAST, loadButton, 98, SpringLayout.EAST, saveButton);
+		loadButton.setFont(new Font("Times New Roman", Font.BOLD, 13));
+		appLayout.putConstraint(SpringLayout.NORTH, loadButton, 0, SpringLayout.NORTH, saveButton);
+		appLayout.putConstraint(SpringLayout.WEST, loadButton, 0, SpringLayout.EAST, saveButton);
+		searchButton = new JButton("Search", new ImageIcon(getClass().getResource("/chatbot/view/images/search.png")));
+		appLayout.putConstraint(SpringLayout.WEST, searchButton, 1, SpringLayout.EAST, loadButton);
+		appLayout.putConstraint(SpringLayout.EAST, searchButton, 98, SpringLayout.EAST, loadButton);
+		searchButton.setFont(new Font("Times New Roman", Font.BOLD, 13));
+		appLayout.putConstraint(SpringLayout.NORTH, searchButton, 0, SpringLayout.NORTH, saveButton);
+		tweetButton = new JButton("Tweet", new ImageIcon(getClass().getResource("/chatbot/view/images/tweet.png")));
+		appLayout.putConstraint(SpringLayout.WEST, tweetButton, 0, SpringLayout.EAST, searchButton);
+		appLayout.putConstraint(SpringLayout.EAST, tweetButton, 98, SpringLayout.EAST, searchButton);
+		tweetButton.setFont(new Font("Times New Roman", Font.BOLD, 13));
+		appLayout.putConstraint(SpringLayout.NORTH, tweetButton, 0, SpringLayout.NORTH, saveButton);
 		
 		setupScrollPane();
 		setupPanel();
@@ -55,6 +85,10 @@ public class ChatPanel extends JPanel{
 		this.add(useButton);
 		this.add(numButton);
 		this.add(textArea);
+		this.add(saveButton);
+		this.add(loadButton);
+		this.add(searchButton);
+		this.add(tweetButton);
 	}
 	private void setupLayout() {
 		chatArea.setText("Hello, I am Chabot. What would you like to talk about? \n");
@@ -72,27 +106,21 @@ public class ChatPanel extends JPanel{
 		
 
 		inputField.setToolTipText("Your Input Goes Here");
-		appLayout.putConstraint(SpringLayout.NORTH, inputField, 200, SpringLayout.NORTH, chatScrollPane);
 		appLayout.putConstraint(SpringLayout.EAST, inputField, -100, SpringLayout.EAST, chatScrollPane);
-		appLayout.putConstraint(SpringLayout.WEST, inputField, 0, SpringLayout.WEST, chatScrollPane);
 		
 		chatButton.setToolTipText("Press This Button To Send Your Input To Chatbot");
 		chatButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		appLayout.putConstraint(SpringLayout.NORTH, chatButton, 0, SpringLayout.NORTH, inputField);
-		appLayout.putConstraint(SpringLayout.EAST, chatButton, 0, SpringLayout.EAST, chatScrollPane);
 		appLayout.putConstraint(SpringLayout.SOUTH, chatButton, 0, SpringLayout.SOUTH, inputField);
 		appLayout.putConstraint(SpringLayout.WEST, chatButton, -100, SpringLayout.EAST, chatScrollPane);
 		
 		useButton.setToolTipText("Press This Button To Check For Special Cases");
 		useButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		appLayout.putConstraint(SpringLayout.NORTH, useButton, 5, SpringLayout.SOUTH, inputField);
 		appLayout.putConstraint(SpringLayout.EAST, useButton, 190, SpringLayout.WEST, chatScrollPane);
-		appLayout.putConstraint(SpringLayout.WEST, useButton, 0, SpringLayout.WEST, chatScrollPane);
 		
 		numButton.setToolTipText("Press This Button  To Display A Number");
 		numButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		appLayout.putConstraint(SpringLayout.NORTH, numButton, 5, SpringLayout.SOUTH, inputField);
-		appLayout.putConstraint(SpringLayout.EAST, numButton, 0, SpringLayout.EAST, chatScrollPane);
 		appLayout.putConstraint(SpringLayout.WEST, numButton, -190, SpringLayout.EAST, chatScrollPane);
 		
 		textArea.setTabSize(0);

@@ -73,6 +73,9 @@ public class ChatbotController {
 		}
 		return response;
 	}
+	public void handleError(Exception error) {
+		display.displayText(error.getMessage());
+	}
 	public Chatbot getChatbot() {
 		return chatbot;
 	}

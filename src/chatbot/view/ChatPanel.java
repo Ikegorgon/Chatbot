@@ -186,7 +186,8 @@ public class ChatPanel extends JPanel{
 		});
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				
+				String usernameToSearch = inputField.getText();
+				chatArea.setText(app.search(usernameToSearch));
 			}
 		});
 		tweetButton.addActionListener(new ActionListener() {

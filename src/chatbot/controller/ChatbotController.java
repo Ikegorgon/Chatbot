@@ -79,6 +79,9 @@ public class ChatbotController {
 	public void tweet(String text) {
 		twitter.sendTweet(text);
 	}
+	public String search(String text) {
+		return twitter.getMostCommonWord(text);
+	}
 	public Chatbot getChatbot() {
 		return chatbot;
 	}

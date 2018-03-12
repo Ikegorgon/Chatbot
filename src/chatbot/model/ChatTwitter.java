@@ -76,7 +76,7 @@ public class ChatTwitter {
 	}
 	private void turnStatusesToWords() {
 		for (Status currentStatus : searchedTweets) {
-			String tweetText = currentStatus.getText();
+			String tweetText = currentStatus.getText().toLowerCase();
 			tweetText = tweetText.replace("\n", " ");
 			String [] tweetWords = tweetText.split(" ");
 			for (int index = 0; index < tweetWords.length; index++) {
@@ -138,7 +138,7 @@ public class ChatTwitter {
 	private void trimTheBoringWords(String [] boringWords) {
 		for (int i = tweetedWords.size()-1; i >= 0; i--) {
 				for (int removeIndex = 0; removeIndex < boringWords.length; removeIndex++) {
-					if (tweetedWords.get(i).equals(removeIndex)) {
+					if (tweetedWords.get(i).equalsIgnoreCase(boringWords[removeIndex])) {
 						tweetedWords.remove(i);
 						removeIndex = boringWords.length;
 					}

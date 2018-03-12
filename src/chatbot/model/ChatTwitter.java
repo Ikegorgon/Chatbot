@@ -11,6 +11,7 @@ public class ChatTwitter {
 	private List<Status> searchedTweets;
 	private List<String> tweetedWords;
 	private long totalWordCount;
+	private HashMap<String, Integer> wordsAndCount;
 	
 	public ChatTwitter(ChatbotController appController) {
 		this.appController = appController;
@@ -18,6 +19,7 @@ public class ChatTwitter {
 		this.searchedTweets = new ArrayList<Status>();
 		this.tweetedWords = new ArrayList<String>();
 		this.totalWordCount = 0;
+		this.wordsAndCount = new HashMap<String, Integer>();
 	}
 	public void sendTweet(String textToTweet) {
 		try {
@@ -34,7 +36,7 @@ public class ChatTwitter {
 		turnStatusesToWords();
 		totalWordCount = tweetedWords.size();
 		String [] boring = createIgnoredWordArray();
-		
+		trimTheBoringWords(boring);
 		return mostCommon;
 	}
 	private void collectTweets(String username) {
@@ -63,6 +65,7 @@ public class ChatTwitter {
 	private void turnStatusesToWords() {
 		for (Status currentStatus : searchedTweets) {
 			String tweetText = currentStatus.getText();
+			tweetText = tweetText.replace("\n", " ");
 			String [] tweetWords = tweetText.split(" ");
 			for (int index = 0; index < tweetWords.length; index++) {
 				tweetedWords.add(removePunctuation(tweetWords[index]).trim());
@@ -79,6 +82,22 @@ public class ChatTwitter {
 			}
 		}
 		return scrubbedString;
+	}
+	private void removeBlanks() {
+		for (int i = tweetedWords.size() - 1; i >= 0; i--) {
+			if (tweetedWords.get(i).trim().length() == 0) {
+				tweetedWords.remove(this);
+			}
+		}
+	}
+	private void geterateWordCount() {
+		for (String word : tweetedWords) {
+			if (!wordsAndCount.containsKey(word.toLowerCase())) {
+				wordsAndCount.put(word.toLowerCase(), 1);
+			} else {
+				wordsAndCount.replace(word.toLowerCase(), wordsAndCount.get(word.toLowerCase() + 1));
+			}
+		}
 	}
 	private String [] createIgnoredWordArray() {
 		String results = "";

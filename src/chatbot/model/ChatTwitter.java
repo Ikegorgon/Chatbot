@@ -37,6 +37,18 @@ public class ChatTwitter {
 		totalWordCount = tweetedWords.size();
 		String [] boring = createIgnoredWordArray();
 		trimTheBoringWords(boring);
+		removeBlanks();
+		generateWordCount();
+		ArrayList<Map.Entry<String, Integer>> sorted = sortHashMap();
+		String mostCommonWord = sorted.get(0).getKey();
+		int maxWord = 0;
+		int maxword = sorted.get(0).getValue();
+		mostCommon = "The most ommon word in " + username + "'s " + searchedTweets.size()
+		+ " tweets is " + mostCommonWord + ", and it was used " + maxWord + " times.\nThis is "
+		+ (DecimalFormat.getPercentInstance().format(((double) maxword)/totalWordCount)) + 
+		" of total words:  " + totalWordCount + " and is " + 
+		(DecimalFormat.getPercentInstance().format(((double) maxWord)/wordsAndCount.size())) +
+		" of the unique words: " + wordsAndCount.size();
 		return mostCommon;
 	}
 	private void collectTweets(String username) {
@@ -90,7 +102,7 @@ public class ChatTwitter {
 			}
 		}
 	}
-	private void geterateWordCount() {
+	private void generateWordCount() {
 		for (String word : tweetedWords) {
 			if (!wordsAndCount.containsKey(word.toLowerCase())) {
 				wordsAndCount.put(word.toLowerCase(), 1);
@@ -98,6 +110,11 @@ public class ChatTwitter {
 				wordsAndCount.replace(word.toLowerCase(), wordsAndCount.get(word.toLowerCase() + 1));
 			}
 		}
+	}
+	private ArrayList<Map.Entry<String, Integer>> sortHashMap() {
+		ArrayList<Map.Entry<String, Integer>> entries = new ArrayList<Map.Entry<String, Integer>>(wordsAndCount.entrySet());
+		entries.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+		return entries;
 	}
 	private String [] createIgnoredWordArray() {
 		String results = "";

@@ -57,7 +57,7 @@ public class ChatTwitter {
 		Paging statusPage = new Paging(1,100);
 		int page = 1;
 		long lastID = Long.MAX_VALUE;
-		while (page <= 10) {
+		while (page <= 100) {
 			statusPage.setPage(page);
 			try {
 				ResponseList<Status> listedTweets = 

@@ -1,4 +1,4 @@
-package chatbot.model;
+dpackage chatbot.model;
 
 import chatbot.controller.*;
 import twitter4j.*;
@@ -49,7 +49,33 @@ public class ChatTwitter {
 		" of total words:  " + totalWordCount + " and is " + 
 		(DecimalFormat.getPercentInstance().format(((double) maxWord)/wordsAndCount.size())) +
 		" of the unique words: " + wordsAndCount.size();
+		
+		mostCommon += "\n\n" + sortedWords();
+		
 		return mostCommon;
+	}
+	private String sortedWords() {
+		String allWords = "";
+		String [] words = new String [wordsAndCount.size()];
+				ArrayList<String> wordList = new ArrayList<String>(wordsAndCount.keySet());
+		for (int i = 0; i < wordsAndCount.size(); i++) {
+			words[i] = wordList.get(i);
+		}
+		for (int i = 0; i < words.length - 1; i++) {
+			int maxIndex = i;
+			for (int inner = i + 1; inner < words.length; inner++) {
+				if (words[inner].compareTo(words[maxIndex]) > 0) {
+					maxIndex = inner;
+				}
+			}
+			String tempMax = words[maxIndex];
+			words[maxIndex] = words[i]; 
+			words[i] = tempMax;
+		}
+		for (String word : words) {
+			allWords += word + ", ";
+		}
+		return allWords;
 	}
 	private void collectTweets(String username) {
 		searchedTweets.clear();
@@ -86,7 +112,7 @@ public class ChatTwitter {
 			
 	}
 	private String removePunctuation(String currentString) {
-		String punctuation = ".,'?!:;\"() {}[]^<>-";
+		String punctuation = ".,'‘?!:;\"“() {}[]^<>-";
 		String scrubbedString = "";
 		for (int i = 0; i < currentString.length(); i++) {
 			if (punctuation.indexOf(currentString.charAt(i)) == -1) {

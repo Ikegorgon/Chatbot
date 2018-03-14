@@ -1,4 +1,4 @@
-dpackage chatbot.model;
+package chatbot.model;
 
 import chatbot.controller.*;
 import twitter4j.*;

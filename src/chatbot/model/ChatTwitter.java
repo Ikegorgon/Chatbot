@@ -142,6 +142,35 @@ public class ChatTwitter {
 		entries.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
 		return entries;
 	}
+	public String analyzeTwitterForTopic(String topic) {
+		String results = "";
+		searchedTweets.clear();
+		Query twitterQuery = new Query(topic);
+		int resultMax = 750;
+		long lastId = Long.MAX_VALUE;
+		double radius = 30.5;
+		twitterQuery.setGeoCode( new GeoLocation(latitude, longitude), radius, Query.KILOMETERS);
+		ArrayList<Status> matchingTweets = new ArrayList<Status>();
+		while (searchedTweets.size() < resultMax) {
+			try {
+				QueryResult resultingTweets = chatbotTwitter.search(twitterQuery);
+				for(Status currentTweet : resultingTweets.getTweets()) {
+					if (currentTweet.getId() < lastId) {
+						matchingTweets.add(currentTweet);
+						lastId = currentTweet.getId();
+					}
+				}
+			} catch (TwitterException error) {
+				appController.handleError(error);
+			}
+			twitterQuery.setMaxId(lastId - 1);
+		}
+		results += "Talk about the search results ";
+		results += "Find a tweet that will pass one of the checkers in chatbot ";
+		int randomTweet = (int) (Math.random() * matchingTweets.size());
+		results += matchingTweets.get(randomTweet);
+		return results;
+	}
 	private String [] createIgnoredWordArray() {
 		String results = "";
 		String [] boringWords;
